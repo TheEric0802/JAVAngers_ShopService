@@ -8,30 +8,30 @@ import java.util.UUID;
 public class ShopService {
 
     private ProductRepo productRepo;
-    private OrderListRepo orderListRepo;
+    private OrderRepo orderRepo;
 
-    public ShopService(ProductRepo productRepo, OrderListRepo orderListRepo) {
+    public ShopService(ProductRepo productRepo, OrderRepo orderRepo) {
         this.productRepo = productRepo;
-        this.orderListRepo = orderListRepo;
+        this.orderRepo = orderRepo;
     }
 
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         ShopService that = (ShopService) o;
-        return Objects.equals(productRepo, that.productRepo) && Objects.equals(orderListRepo, that.orderListRepo);
+        return Objects.equals(productRepo, that.productRepo) && Objects.equals(orderRepo, that.orderRepo);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(productRepo, orderListRepo);
+        return Objects.hash(productRepo, orderRepo);
     }
 
     @Override
     public String toString() {
         return "ShopService{" +
                 "productRepo=" + productRepo +
-                ", orderListRepo=" + orderListRepo +
+                ", orderRepo=" + orderRepo +
                 '}';
     }
 
@@ -51,7 +51,7 @@ public class ShopService {
 
         if (allProductsExist) {
             String orderId = UUID.randomUUID().toString();
-            orderListRepo.addOrder(orderId, orderedProducts);
+            orderRepo.addOrder(orderId, orderedProducts);
         }
     }
 }
