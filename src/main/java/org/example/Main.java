@@ -17,22 +17,22 @@ public class Main {
         System.out.println(productRepo.getProducts());
 
 
-        OrderListRepo orderListRepo = new OrderListRepo();
+        OrderRepo orderRepo = new OrderMapRepo();
 
-        orderListRepo.addOrder("1", productRepo.getProducts());
-        orderListRepo.addOrder("2", productRepo.getProducts());
-        orderListRepo.addOrder("3", productRepo.getProducts());
+        orderRepo.addOrder("1", productRepo.getProducts());
+        orderRepo.addOrder("2", productRepo.getProducts());
+        orderRepo.addOrder("3", productRepo.getProducts());
 
-        System.out.println(orderListRepo.getOrders());
-        System.out.println(orderListRepo.getOrder("1"));
+        System.out.println(orderRepo.getOrders());
+        System.out.println(orderRepo.getOrder("1"));
 
-        orderListRepo.removeOrder("1");
-        System.out.println(orderListRepo.getOrders());
+        orderRepo.removeOrder("1");
+        System.out.println(orderRepo.getOrders());
 
-        ShopService shopService = new ShopService(productRepo, orderListRepo);
+        ShopService shopService = new ShopService(productRepo, orderRepo);
         shopService.createOrder(List.of("2", "3"));
 
-        System.out.println(orderListRepo.getOrders());
+        System.out.println(orderRepo.getOrders());
 
     }
 }
