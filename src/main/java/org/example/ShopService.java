@@ -1,9 +1,6 @@
 package org.example;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.UUID;
+import java.util.*;
 
 public class ShopService {
 
@@ -35,14 +32,14 @@ public class ShopService {
                 '}';
     }
 
-    public void createOrder(List<String> productIds) {
-        List<Product> orderedProducts = new ArrayList<>();
+    public void createOrder(Map<String, Integer> productIdsAndQuantity) {
+        Map<Product, Integer> orderedProductsAndQuantity = new HashMap<>();
         boolean allProductsExist = true;
 
-        for (String productId : productIds) {
+        for (String productId : productIdsAndQuantity.keySet()) {
             Product product = productRepo.getProduct(productId);
             if (product != null) {
-                orderedProducts.add(product);
+                orderedProductsAndQuantity.put(product, productIdsAndQuantity.get(productId));
             } else {
                 System.out.println("Product with ID " + productId + " does not exist.");
                 allProductsExist = false;
@@ -51,7 +48,7 @@ public class ShopService {
 
         if (allProductsExist) {
             String orderId = UUID.randomUUID().toString();
-            orderRepo.addOrder(orderId, orderedProducts);
+            orderRepo.addOrder(orderId, orderedProductsAndQuantity);
         }
     }
 }

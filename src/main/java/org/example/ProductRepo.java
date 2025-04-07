@@ -1,5 +1,6 @@
 package org.example;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -31,8 +32,8 @@ public class ProductRepo {
         products.add(product);
     }
 
-    public void addProduct(String id, String name) {
-        this.addProduct(new Product(id, name));
+    public void addProduct(String id, String name, BigDecimal price) {
+        this.addProduct(new Product(id, name, price));
     }
 
     public List<Product> getProducts() {
