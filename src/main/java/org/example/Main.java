@@ -1,5 +1,7 @@
 package org.example;
 
+import java.util.List;
+
 public class Main {
     public static void main(String[] args) {
         ProductRepo productRepo = new ProductRepo();
@@ -25,6 +27,11 @@ public class Main {
         System.out.println(orderListRepo.getOrder("1"));
 
         orderListRepo.removeOrder("1");
+        System.out.println(orderListRepo.getOrders());
+
+        ShopService shopService = new ShopService(productRepo, orderListRepo);
+        shopService.createOrder(List.of("2", "3"));
+
         System.out.println(orderListRepo.getOrders());
 
     }
