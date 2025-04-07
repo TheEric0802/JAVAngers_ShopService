@@ -13,5 +13,19 @@ public class Main {
 
         productRepo.removeProduct("1");
         System.out.println(productRepo.getProducts());
+
+
+        OrderListRepo orderListRepo = new OrderListRepo();
+
+        orderListRepo.addOrder("1", productRepo.getProducts());
+        orderListRepo.addOrder("2", productRepo.getProducts());
+        orderListRepo.addOrder("3", productRepo.getProducts());
+
+        System.out.println(orderListRepo.getOrders());
+        System.out.println(orderListRepo.getOrder("1"));
+
+        orderListRepo.removeOrder("1");
+        System.out.println(orderListRepo.getOrders());
+
     }
 }
